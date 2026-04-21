@@ -1,0 +1,45 @@
+# deps
+node_modules/
+.pnpm-store/
+
+# build artifacts
+dist/
+build/
+out/
+cache/
+cache_hardhat/
+artifacts/
+typechain-types/
+coverage/
+lcov.info
+
+# foundry
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+contracts/lib/
+
+# env
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# os
+.DS_Store
+Thumbs.db
+
+# generated artifacts from secure-oapp itself
+security.md.tmp

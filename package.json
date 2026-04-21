@@ -1,0 +1,43 @@
+{
+  "name": "secure-oapp-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Secure-by-default LayerZero OApp/OFT SDK. Refuses to deploy insecure DVN configurations.",
+  "license": "MIT",
+  "author": "Gopi Kannappan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gopikannappan/SecureOApp.git"
+  },
+  "homepage": "https://secureoapp.dev",
+  "bugs": "https://github.com/gopikannappan/SecureOApp/issues",
+  "keywords": [
+    "layerzero",
+    "oapp",
+    "oft",
+    "dvn",
+    "bridge-security",
+    "cross-chain",
+    "zk"
+  ],
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r --filter \"./packages/*\" build",
+    "test": "pnpm -r --filter \"./packages/*\" test",
+    "test:contracts": "cd contracts && forge test -vv",
+    "lint": "pnpm -r --filter \"./packages/*\" lint",
+    "typecheck": "pnpm -r --filter \"./packages/*\" typecheck",
+    "clean": "pnpm -r --filter \"./packages/*\" clean && rm -rf contracts/out contracts/cache"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.4.0"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
