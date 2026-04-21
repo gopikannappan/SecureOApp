@@ -28,14 +28,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # Node 24 bundles npm 11, which has built-in Trusted Publishing
+          # support. Avoids the `npm install -g npm@latest` self-upgrade
+          # race that broke on Node 22 (promise-retry MODULE_NOT_FOUND).
+          node-version: 24
           cache: pnpm
           registry-url: "https://registry.npmjs.org"
-
-      - name: Upgrade npm for Trusted Publishing support
-        # Trusted Publishing needs npm >= 11.5.1. Node 22 bundles npm 10.x,
-        # so we upgrade explicitly. Also used by pnpm under the hood.
-        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
