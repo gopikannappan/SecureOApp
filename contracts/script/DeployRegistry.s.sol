@@ -10,12 +10,12 @@ import { DVNRegistry, DVNOperators } from "../src/registry/DVNRegistry.sol";
 ///         with the chain-appropriate address list.
 ///
 /// Usage:
-///   SEED_CHAIN=base-sepolia \
-///   DVN_OWNER=0xYourDeployer \
-///   forge script script/DeployRegistry.s.sol \
-///     --rpc-url $BASE_SEPOLIA_RPC_URL \
-///     --private-key $DEPLOYER_PK \
-///     --broadcast
+///   SEED_CHAIN=base-sepolia forge script script/DeployRegistry.s.sol \
+///     --rpc-url $BASE_SEPOLIA_RPC_URL --private-key $DEPLOYER_PK --broadcast
+///
+/// The registry owner is set to the broadcaster (the address derived from
+/// --private-key). If you want a separate owner, pass DVN_OWNER=0x... in
+/// the env — it overrides the default.
 ///
 /// Supported SEED_CHAIN values: ethereum, arbitrum, base, base-sepolia,
 /// arbitrum-sepolia, optimism-sepolia, ethereum-sepolia.
@@ -28,12 +28,16 @@ contract DeployRegistry is Script {
 
     function run() external {
         string memory chain = vm.envString("SEED_CHAIN");
-        address owner = vm.envAddress("DVN_OWNER");
 
         Entry[] memory entries = _seedFor(chain);
         require(entries.length > 0, "DeployRegistry: no entries for SEED_CHAIN");
 
         vm.startBroadcast();
+        // The broadcaster signs the deploy tx; tx.origin inside the broadcast
+        // is that address. Use it as the registry owner so register() calls
+        // below succeed without needing a second signer. Override by setting
+        // DVN_OWNER env if you want ownership to diverge.
+        address owner = vm.envOr("DVN_OWNER", tx.origin);
         DVNRegistry registry = new DVNRegistry(owner);
         for (uint256 i; i < entries.length; ++i) {
             registry.register(entries[i].dvn, entries[i].operator, entries[i].isZk);
