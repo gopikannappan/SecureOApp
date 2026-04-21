@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-contracts:
+    name: Foundry tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+      - name: Install forge-std
+        working-directory: contracts
+        run: forge install foundry-rs/forge-std
+      - name: Build
+        working-directory: contracts
+        run: forge build --sizes
+      - name: Test
+        working-directory: contracts
+        run: forge test -vv
+      - name: Coverage
+        working-directory: contracts
+        run: forge coverage --report summary
+
+  test-ts:
+    name: TS packages build + test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r --filter "./packages/*" build
+      - run: pnpm -r --filter "./packages/*" typecheck
+      - run: pnpm -r --filter "./packages/*" test
+
+  smoke-cli:
+    name: Smoke-test CLI on scaffolded project
+    runs-on: ubuntu-latest
+    needs: test-ts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r --filter "./packages/*" build
+      - name: Init + validate
+        run: |
+          cd /tmp
+          node $GITHUB_WORKSPACE/packages/cli/dist/bin/secure-oapp.js init smoke \
+            --profile lite --src-chain base-sepolia --dst-chain arbitrum-sepolia
+          cd smoke
+          # `lite` only requires 2 distinct operators. Base-sepolia has LZ + Nethermind
+          # so the scaffold should pass validation out of the box.
+          node $GITHUB_WORKSPACE/packages/cli/dist/bin/secure-oapp.js validate

@@ -2,8 +2,11 @@
 
 **Secure-by-default LayerZero OApp/OFT SDK.** A drop-in replacement for LayerZero's OApp/OFT templates that refuses to deploy with insecure DVN configurations. You can't ship a 1/1 bridge through this SDK.
 
+[![CI](https://github.com/gopikannappan/SecureOApp/actions/workflows/ci.yml/badge.svg)](https://github.com/gopikannappan/SecureOApp/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Status](https://img.shields.io/badge/status-v0.1%20preview-orange)](https://github.com/gopikannappan/SecureOApp/releases)
+
+> **v0.1 preview — unaudited.** Use at your own risk on mainnet. The `SecureConfigBase` contract has 50 Foundry tests (including fuzz + cross-stack parity vs. the TS validator) but has not undergone a third-party audit. The DVN registry ships seed data verified against LayerZero's live metadata on 2026-04-21; it is expected to drift and is updated via PRs. Report issues via [GitHub security advisories](https://github.com/gopikannappan/SecureOApp/security/advisories/new).
 
 ---
 

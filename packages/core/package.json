@@ -9,7 +9,7 @@
     "url": "https://github.com/gopikannappan/SecureOApp.git",
     "directory": "packages/core"
   },
-  "homepage": "https://secureoapp.dev",
+  "homepage": "https://github.com/gopikannappan/SecureOApp#readme",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

@@ -16,20 +16,23 @@ The cost delta between 1/1 and a 2/3+ZK config is roughly 3 cents per message. T
 
 `secure-oapp` is a drop-in replacement for LayerZero's OApp/OFT templates. The only thing it does differently: refuse to ship unsafe configs.
 
-Running `secure-oapp validate` against Kelp's pre-hack config would have produced:
+Here is the actual output of `secure-oapp validate` against a synthetic 1/1 config matching what public post-mortems describe ([Blockaid's writeup](https://www.blockaid.io/blog/how-a-single-layerzero-dvn-compromise-drained-292m-from-kelpdao) is the cleanest external reference). The exact addresses used by Kelp are not fully public at time of writing; the validator's reasoning is what matters — the shape of the config is what determines the refusal:
 
 ```
 ✗ RequiredDVNCountTooLow: requiredDVNCount=1 < min=2. Increase requiredDVNs to at least 2.
-  See post-mortem: Kelp DAO $292M loss ($292M, 2026-04-18)
-  https://secureoapp.dev/incidents/kelp
-  Root cause: Single DVN compromised via operator-level key leak; 1/1 config had no backstop.
+  See post-mortem: Kelp DAO bridge compromise ($292M, 2026-04-18)
+  https://www.blockaid.io/blog/how-a-single-layerzero-dvn-compromise-drained-292m-from-kelpdao
+  Root cause: Single DVN compromised; a 1/1 config has no second verifier to catch a forged message.
 
 ✗ ZkDVNCountTooLow: zkDVNs=0 < min=1. Add a ZK verifier (Polyhedra/Succinct) to the DVN set.
-  See post-mortem: Multichain / Anyswap $126M
-  Root cause: Multi-sig operator custody failure; no cryptographic verifier to cross-check.
+  See post-mortem: Multichain / Anyswap (~$126M, 2023-07-07)
+  https://rekt.news/multichain-rekt2/
+  Root cause: MPC key custody failure across operator-controlled signers; no cryptographic verifier to cross-check.
 ```
 
-The deployment would have exited with a non-zero code. No transaction would have been sent.
+The deploy exited with code `1`. No transaction was sent.
+
+_Reproduce: `git clone`, `pnpm install`, run `secure-oapp validate` against the [1/1 test fixture](../packages/cli/test/e2e.test.ts) — the "validate exits 1 on a 1/1 config" test captures exactly this flow. When Kelp's full post-mortem publishes the concrete config their OFT was running, this section will be updated to use that config verbatim._
 
 ## The three profiles
 
@@ -73,6 +76,6 @@ If LayerZero ships equivalent enforcement in v3 and makes `secure-oapp` redundan
 - GitHub: https://github.com/gopikannappan/SecureOApp
 - NPM: `secure-oapp`, `@secure-oapp/core`, `@secure-oapp/hardhat`
 - Issues & DVN registry PRs: welcomed.
-- Security reports: security@secureoapp.dev.
+- Security reports: open a [GitHub security advisory](https://github.com/gopikannappan/SecureOApp/security/advisories/new).
 
 — Author bio: Gopi Kannappan. Building ***. SecureOApp is a nights-and-weekends credibility artifact; the primary work is there.

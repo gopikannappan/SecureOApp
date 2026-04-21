@@ -9,7 +9,7 @@
     "url": "https://github.com/gopikannappan/SecureOApp.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://secureoapp.dev",
+  "homepage": "https://github.com/gopikannappan/SecureOApp#readme",
   "type": "module",
   "bin": {
     "secure-oapp": "./dist/bin/secure-oapp.js"

@@ -2,7 +2,7 @@
 
 ## Reporting vulnerabilities
 
-Email **security@secureoapp.dev** with:
+Open a [private security advisory](https://github.com/gopikannappan/SecureOApp/security/advisories/new) on GitHub with:
 
 - A description of the vulnerability and affected package/version.
 - Proof-of-concept (PoC) or reproduction steps.
@@ -29,7 +29,7 @@ Out of scope:
 2. Reproduce and triage. Agree severity with the reporter.
 3. Develop a fix in a private branch. Request a CVE if warranted.
 4. Coordinate disclosure date. Bias toward fast public release once a patched version exists.
-5. Publish a post-mortem at `secureoapp.dev/incidents/<id>` and credit the reporter unless they opt out.
+5. Publish a post-mortem in `docs/incidents/<id>.md` and a GitHub release note; credit the reporter unless they opt out.
 
 ## Bounty
 
