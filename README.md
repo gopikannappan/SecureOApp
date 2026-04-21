@@ -3,6 +3,7 @@
 **Secure-by-default LayerZero OApp/OFT SDK.** A drop-in replacement for LayerZero's OApp/OFT templates that refuses to deploy with insecure DVN configurations. You can't ship a 1/1 bridge through this SDK.
 
 [![CI](https://github.com/gopikannappan/SecureOApp/actions/workflows/ci.yml/badge.svg)](https://github.com/gopikannappan/SecureOApp/actions/workflows/ci.yml)
+[![Pages](https://github.com/gopikannappan/SecureOApp/actions/workflows/pages.yml/badge.svg)](https://gopikannappan.github.io/SecureOApp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Status](https://img.shields.io/badge/status-v0.1%20preview-orange)](https://github.com/gopikannappan/SecureOApp/releases)
 
