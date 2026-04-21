@@ -10,9 +10,13 @@ on:
         type: boolean
         default: false
 
+# Trusted Publishing: npm authenticates this workflow via OIDC. No long-lived
+# NPM_TOKEN secret stored in the repo — npm verifies the OIDC claim against
+# the Trusted Publisher config set up on each package (see
+# docs/RELEASE_AUTOMATION.md).
 permissions:
   contents: read
-  id-token: write  # for npm provenance
+  id-token: write
 
 jobs:
   publish:
@@ -22,27 +26,36 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
           registry-url: "https://registry.npmjs.org"
+
+      - name: Upgrade npm for Trusted Publishing support
+        # Trusted Publishing needs npm >= 11.5.1. Node 22 bundles npm 10.x,
+        # so we upgrade explicitly. Also used by pnpm under the hood.
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+
       - name: Install forge-std
-        run: |
-          curl -L https://foundry.paradigm.xyz | bash
-          $HOME/.foundry/bin/foundryup
-          cd contracts && $HOME/.foundry/bin/forge install foundry-rs/forge-std
+        working-directory: contracts
+        run: forge install foundry-rs/forge-std
 
       - name: Foundry tests (safety net)
-        run: cd contracts && $HOME/.foundry/bin/forge test
+        working-directory: contracts
+        run: forge test
 
-      - name: TS build + test (safety net)
+      - name: TS build + typecheck + test (safety net)
         run: |
           pnpm -r --filter "./packages/*" build
           pnpm -r --filter "./packages/*" typecheck
@@ -64,17 +77,14 @@ jobs:
 
       - name: Publish to npm (dry run)
         if: inputs.dry_run == true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          pnpm publish -r --access public --no-git-checks --dry-run
+        run: pnpm publish -r --access public --no-git-checks --dry-run
 
-      - name: Publish to npm
+      - name: Publish to npm (Trusted Publishing + provenance)
         if: inputs.dry_run != true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # pnpm auto-transforms workspace:* refs to the current version at publish time.
-          # --no-git-checks because the release workflow runs on a detached head at the tag.
-          # --access public needed for first publish of scoped packages.
+          # pnpm rewrites workspace:* → concrete versions at publish time.
+          # --provenance signs each publish with an audit trail linking the
+          # artifact back to this workflow run and commit SHA.
+          # --access public needed for scoped packages on first publish; a
+          # no-op after the first publish.
           pnpm publish -r --access public --no-git-checks --provenance
