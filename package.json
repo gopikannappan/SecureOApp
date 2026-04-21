@@ -28,6 +28,7 @@
     "build": "pnpm -r --filter \"./packages/*\" build",
     "test": "pnpm -r --filter \"./packages/*\" test",
     "test:contracts": "cd contracts && forge test -vv",
+    "test:all": "pnpm build && pnpm test && pnpm test:contracts",
     "lint": "pnpm -r --filter \"./packages/*\" lint",
     "typecheck": "pnpm -r --filter \"./packages/*\" typecheck",
     "clean": "pnpm -r --filter \"./packages/*\" clean && rm -rf contracts/out contracts/cache"
