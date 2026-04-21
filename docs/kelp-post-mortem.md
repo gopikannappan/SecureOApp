@@ -78,4 +78,4 @@ If LayerZero ships equivalent enforcement in v3 and makes `secure-oapp` redundan
 - Issues & DVN registry PRs: welcomed.
 - Security reports: open a [GitHub security advisory](https://github.com/gopikannappan/SecureOApp/security/advisories/new).
 
-— Author bio: Gopi Kannappan. Building ***. SecureOApp is a nights-and-weekends credibility artifact; the primary work is there.
+— Gopi Kannappan. More at [github.com/gopikannappan](https://github.com/gopikannappan).
