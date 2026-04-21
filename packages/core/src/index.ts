@@ -10,7 +10,13 @@ export type {
 } from "./types.js";
 
 export { PROFILES, PROFILE_IDS, getProfile, profileNameFromId } from "./profiles.js";
-export { DVNRegistryClient, defaultRegistry, REGISTRY, listChains } from "./registry/index.js";
+export {
+  DVNRegistryClient,
+  defaultRegistry,
+  REGISTRY,
+  listChains,
+  LZ_ENDPOINTS_V2,
+} from "./registry/index.js";
 export { validate } from "./validator.js";
 export type { ValidationResult, ValidationSummary, ValidateOptions } from "./validator.js";
 export type { ValidationError, PostMortemLink } from "./errors.js";

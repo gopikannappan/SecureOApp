@@ -1,29 +1,29 @@
 {
-  "profile": "standard",
+  "profile": "lite",
   "lanes": [
     {
       "srcChain": "base-sepolia",
       "dstChain": "arbitrum-sepolia",
       "oappAddress": "0x0000000000000000000000000000000000000000",
       "send": {
-        "confirmations": 15,
+        "confirmations": 5,
         "requiredDVNCount": 2,
         "optionalDVNCount": 0,
         "optionalDVNThreshold": 0,
         "requiredDVNs": [
-          "0xe1a12515F9AB2764b887bF60192924C815d62A81",
-          "0x0000000000000000000000000000000000000000"
+          "0xe1a12515f9ab2764b887bf60b923ca494ebbb2d6",
+          "0xd9222cc3ccd1df7c070d700ea377d4ada2b86eb5"
         ],
         "optionalDVNs": []
       },
       "receive": {
-        "confirmations": 15,
+        "confirmations": 5,
         "requiredDVNCount": 2,
         "optionalDVNCount": 0,
         "optionalDVNThreshold": 0,
         "requiredDVNs": [
-          "0x53f488E93b4f1b60E8E83aa374dBe1780A1EE8a8",
-          "0x0000000000000000000000000000000000000000"
+          "0x53f488e93b4f1b60e8e83aa374dbe1780a1ee8a8",
+          "0x3a74f7174709842d3b8a14ce60b4aa2499f2a2f2"
         ],
         "optionalDVNs": []
       }

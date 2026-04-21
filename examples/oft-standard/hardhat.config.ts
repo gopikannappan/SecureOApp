@@ -18,7 +18,7 @@ const config: HardhatUserConfig = {
     },
   },
   secureOApp: {
-    profile: "standard",
+    profile: "lite",
     configPath: "./secure-oapp.config.json",
     securityMdPath: "./security.md",
   },

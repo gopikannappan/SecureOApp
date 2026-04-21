@@ -56,14 +56,14 @@ export type ChainKey =
   | "arbitrum"
   | "optimism"
   | "base"
-  | "bnb"
+  | "bsc"
   | "polygon"
   | "avalanche"
   | "ethereum-sepolia"
   | "arbitrum-sepolia"
   | "optimism-sepolia"
   | "base-sepolia"
-  | "bnb-testnet"
+  | "bsc-testnet"
   | (string & {});
 
 export interface ChainRegistry {

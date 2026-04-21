@@ -7,7 +7,7 @@ test("listChains includes expected mainnets and testnets", () => {
   assert.ok(chains.includes("ethereum"));
   assert.ok(chains.includes("arbitrum"));
   assert.ok(chains.includes("base"));
-  assert.ok(chains.includes("bnb"));
+  assert.ok(chains.includes("bsc"));
   assert.ok(chains.includes("base-sepolia"));
   assert.ok(chains.includes("arbitrum-sepolia"));
 });

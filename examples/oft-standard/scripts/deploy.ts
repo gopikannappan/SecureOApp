@@ -15,7 +15,7 @@ async function main() {
   const registryAddress = must("DVN_REGISTRY");
   const name = process.env.OFT_NAME ?? "SecureExampleOFT";
   const symbol = process.env.OFT_SYMBOL ?? "sxOFT";
-  const profileId = PROFILE_IDS.standard;
+  const profileId = PROFILE_IDS.lite;
 
   const factory = await ethers.getContractFactory("StandardOFT");
   const oft = await factory.deploy(endpoint, registryAddress, profileId, deployer.address, name, symbol);
@@ -68,7 +68,7 @@ function eidFor(chain: string): number {
     "arbitrum-sepolia": 40231,
     "optimism-sepolia": 40232,
     "ethereum-sepolia": 40161,
-    "bnb-testnet": 40102,
+    "bsc-testnet": 40102,
   };
   const e = map[chain];
   if (!e) throw new Error(`Unknown chain for eid lookup: ${chain}`);

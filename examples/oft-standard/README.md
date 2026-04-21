@@ -1,6 +1,8 @@
-# oft-standard
+# oft-standard (testnet uses `lite` profile)
 
-Example: an OFT (omnichain fungible token) deployed with SecureOApp's `standard` profile across Base Sepolia ↔ Arbitrum Sepolia.
+Example: an OFT (omnichain fungible token) deployed across Base Sepolia ↔ Arbitrum Sepolia.
+
+**Note on profile choice.** This example uses the `lite` profile because Polyhedra's zkBridge DVN is not broadly deployed on Sepolia testnets (it's a production verifier). For a real mainnet deployment, switch `profile` to `standard` and add a Polyhedra DVN to each lane — the `secure-oapp quote` output shows the per-profile fee delta. See [`docs/PROFILES.md`](../../docs/PROFILES.md).
 
 ## Exercise it
 

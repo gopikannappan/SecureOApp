@@ -16,8 +16,8 @@ const validLane = {
     optionalDVNCount: 0,
     optionalDVNThreshold: 0,
     requiredDVNs: [
-      "0x589dEDbD617e0CBcB916A9223F4d1300c294236b",
-      "0x8FafAE7Dd957044088b3d0F67359C327c6200d18",
+      "0x589dedbd617e0cbcb916a9223f4d1300c294236b",
+      "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc",
     ],
     optionalDVNs: [],
   },
@@ -27,8 +27,8 @@ const validLane = {
     optionalDVNCount: 0,
     optionalDVNThreshold: 0,
     requiredDVNs: [
-      "0x2f55C492897526677C5B68fb199ea31E2c126416",
-      "0x8FafAE7Dd957044088b3d0F67359C327c6200d18",
+      "0x2f55c492897526677c5b68fb199ea31e2c126416",
+      "0xe014fe8c4d5c23edb7ac4011f226e869ac7ef5cc",
     ],
     optionalDVNs: [],
   },

@@ -2,7 +2,7 @@ import type { Address } from "viem";
 import type { ChainKey, ChainRegistry, DVNEntry, DVNTag } from "../types.js";
 import { REGISTRY } from "./defaults.js";
 
-export { REGISTRY, listChains } from "./defaults.js";
+export { REGISTRY, listChains, LZ_ENDPOINTS_V2 } from "./defaults.js";
 
 /**
  * Read-only lookup over the bundled registry. The CLI loads a possibly-
