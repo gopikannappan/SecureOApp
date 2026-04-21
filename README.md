@@ -76,7 +76,7 @@ Requires Node >= 18.17, pnpm >= 9, Foundry (for contracts).
 
 ## Status
 
-v0.1 preview. 
+v0.1 preview. See [`docs/kelp-post-mortem.md`](./docs/kelp-post-mortem.md) for the launch context and [`docs/THREAT_MODEL.md`](./docs/THREAT_MODEL.md) for what this project defends against.
 
 ## Contributing
 
