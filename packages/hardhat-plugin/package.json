@@ -1,0 +1,42 @@
+{
+  "name": "@secure-oapp/hardhat",
+  "version": "0.1.0",
+  "description": "Hardhat plugin for SecureOApp. Enforces DVN profiles on deploy.",
+  "license": "MIT",
+  "author": "Gopi Kannappan",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gopikannappan/SecureOApp.git",
+    "directory": "packages/hardhat-plugin"
+  },
+  "homepage": "https://secureoapp.dev",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx --test test/**/*.test.ts",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@secure-oapp/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "hardhat": "^2.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "hardhat": "^2.22.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
