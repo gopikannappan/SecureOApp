@@ -1,0 +1,18 @@
+{
+  "name": "@secure-oapp/example-oft-standard",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Example OFT using SecureOApp's `standard` profile on Base Sepolia ↔ Arbitrum Sepolia.",
+  "scripts": {
+    "validate": "secure-oapp validate",
+    "compile": "hardhat compile",
+    "deploy:src": "secure-oapp deploy --network base-sepolia",
+    "deploy:dst": "secure-oapp deploy --network arbitrum-sepolia",
+    "quote": "secure-oapp quote --from base-sepolia --to arbitrum-sepolia"
+  },
+  "dependencies": {
+    "@secure-oapp/core": "workspace:*",
+    "@secure-oapp/hardhat": "workspace:*",
+    "secure-oapp": "workspace:*"
+  }
+}

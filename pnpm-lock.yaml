@@ -15,6 +15,18 @@ importers:
         specifier: ^5.4.0
         version: 5.9.3
 
+  examples/oft-standard:
+    dependencies:
+      '@secure-oapp/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@secure-oapp/hardhat':
+        specifier: workspace:*
+        version: link:../../packages/hardhat-plugin
+      secure-oapp:
+        specifier: workspace:*
+        version: link:../../packages/cli
+
   packages/cli:
     dependencies:
       '@secure-oapp/core':
